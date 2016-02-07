@@ -43,11 +43,16 @@ class MultiColumnTextView: UIView {
     
     let columnsMargin = margin * (CGFloat(columns) - 1)
     let columnWidth = (bounds.size.width - columnsMargin) / CGFloat(columns)
+    let rowHeight = (bounds.size.height - margin) / 2
     
-    let columnSize = CGSizeMake(columnWidth, bounds.size.height)
+    let container = NSTextContainer(size: CGSizeMake(bounds.width, rowHeight))
+    self.layout.addTextContainer(container)
     
+    containers.append((container, bounds.origin))
+    
+    let columnSize = CGSizeMake(columnWidth, rowHeight)
     var x = bounds.origin.x
-    let y = bounds.origin.y
+    let y = rowHeight + margin
     
     for _ in 0...columns {
       let container = NSTextContainer(size: columnSize)
