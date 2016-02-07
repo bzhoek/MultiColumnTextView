@@ -13,6 +13,7 @@
 		490617E91C67B69C00360BED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 490617E81C67B69C00360BED /* Assets.xcassets */; };
 		490617EC1C67B69C00360BED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 490617EA1C67B69C00360BED /* LaunchScreen.storyboard */; };
 		490617F41C67B85A00360BED /* MultiColumnTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490617F31C67B85A00360BED /* MultiColumnTextView.swift */; };
+		491841411C67EE9E008231CC /* content.txt in Resources */ = {isa = PBXBuildFile; fileRef = 491841401C67EE9E008231CC /* content.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		490617EB1C67B69C00360BED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		490617ED1C67B69C00360BED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		490617F31C67B85A00360BED /* MultiColumnTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiColumnTextView.swift; sourceTree = "<group>"; };
+		491841401C67EE9E008231CC /* content.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = content.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				490617E81C67B69C00360BED /* Assets.xcassets */,
 				490617EA1C67B69C00360BED /* LaunchScreen.storyboard */,
 				490617ED1C67B69C00360BED /* Info.plist */,
+				491841401C67EE9E008231CC /* content.txt */,
 			);
 			name = MultiColumnTextView;
 			path = SimpleTextView;
@@ -126,6 +129,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				491841411C67EE9E008231CC /* content.txt in Resources */,
 				490617EC1C67B69C00360BED /* LaunchScreen.storyboard in Resources */,
 				490617E91C67B69C00360BED /* Assets.xcassets in Resources */,
 				490617E71C67B69C00360BED /* Main.storyboard in Resources */,
@@ -291,6 +295,7 @@
 				490617F21C67B69C00360BED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

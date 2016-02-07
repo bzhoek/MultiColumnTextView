@@ -10,7 +10,6 @@ class MultiColumnTextView: UIView {
     }
   }
 
-  var origins: [CGPoint] = []
   var layout: NSLayoutManager!
   
   var containers: [(NSTextContainer, CGPoint)] = []
@@ -18,7 +17,16 @@ class MultiColumnTextView: UIView {
   override func awakeFromNib() {
     super.awakeFromNib()
     self.layout = NSLayoutManager()
-    self.storage = NSTextStorage(string: "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ", attributes: [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)])
+    
+    if let url = NSBundle.mainBundle().URLForResource("content", withExtension:"txt") {
+      do {
+        try self.storage = NSTextStorage(URL: url, options: [NSDocumentTypeDocumentAttribute:NSPlainTextDocumentType], documentAttributes: nil)
+      } catch let error as NSError {
+        print(error)
+      }
+    } else {
+      self.storage = NSTextStorage(string: "Ad corpus diceres pertinere-, sed ea, quae dixi, ad corpusne refers? Quid igitur dubitamus in tota eius natura quaerere quid sit effectum? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Tu vero, inquam, ducas licet, si sequetur; Nummus in Croesi divitiis obscuratur, pars est tamen divitiarum. Itaque hoc frequenter dici solet a vobis, non intellegere nos, quam dicat Epicurus voluptatem.", attributes: [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)])
+    }
   }
   
   func createColumns() {
@@ -26,31 +34,28 @@ class MultiColumnTextView: UIView {
       layout.removeTextContainerAtIndex(0)
     }
     
-    self.containers = []
+    self.containers.removeAll()
     
     let bounds = self.bounds
     
     let columns = 2
     let margin: CGFloat = 10
     
-    let totalMargin = margin * (CGFloat(columns) - 1)
-    let columnWidth = (bounds.size.width - totalMargin) / CGFloat(columns)
+    let columnsMargin = margin * (CGFloat(columns) - 1)
+    let columnWidth = (bounds.size.width - columnsMargin) / CGFloat(columns)
     
     let columnSize = CGSizeMake(columnWidth, bounds.size.height)
     
-    var origins: [CGPoint] = []
-    
     var x = bounds.origin.x
     let y = bounds.origin.y
+    
     for _ in 0...columns {
       let container = NSTextContainer(size: columnSize)
       self.layout.addTextContainer(container)
       
       containers.append((container, CGPointMake(x, y)))
-      origins.append(CGPointMake(x, y))
       x += columnWidth + margin
     }
-    self.origins = origins
   }
   
   override func drawRect(rect: CGRect) {
